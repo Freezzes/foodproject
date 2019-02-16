@@ -1,17 +1,17 @@
+{% extends "bistro/base.html" %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>BISTRO</title>
-</head>
 <body>
-
+    {% block content %}
+      
     <h1>Home</h1>
     <h2><li><a href="{% url 'bistro:index' %}">HOME</a></li></h2>
     <h2><li><a href="{% url 'bistro:search' %}">SEARCH RESTAURANT</a></li></h2>
     <h2><li><a href="{% url 'bistro:find' %}">CATEGORY</a></li></h2>
     <h2><li><a href="{% url 'bistro:random' %}">RANDOM RESTAURANT</a></li></h2>
     <h2><li><a href="{% url 'bistro:review' %}">REVIEW</a></li></h2>
+    
+    {% endblock content %}
 
 
 </body>

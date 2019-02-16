@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BISTRO</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div>
+        <a href="{% url 'bistro:index' %}">HOME</a>
+        <a href="{% url 'bistro:search' %}">SEARCH RESTAURANT</a>
+        <a href="{% url 'bistro:find' %}">CATEGORY</a>
+        <a href="{% url 'bistro:random' %}">RANDOM RESTAURANT</a>
+        <a href="{% url 'bistro:review' %}">REVIEW</a>
+      </div>
+    </header>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

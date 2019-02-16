@@ -1,12 +1,19 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse ,HttpResponseRedirect
+from django.shortcuts import get_object_or_404,render
+from django.http import Http404
+from django.urls import reverse
+from .models import Shop,review
 
 # Create your views here.
 def index(request):
     return render(request,'bistro/index.html')
 
 def search(request):
-    return HttpResponse("search from name")
+    context = {
+        'bis':Shop.objects.all()
+    }
+    return render(request, 'bistro/search.html', context)
+
 
 def find(request):
     return HttpResponse("search from category")
