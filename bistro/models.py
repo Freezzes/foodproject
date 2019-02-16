@@ -14,3 +14,9 @@ class review(models.Model):
     name = models.ForeignKey(Shop, on_delete=models.CASCADE)
     comment = models.CharField(max_length=200)
     score = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.comment
+
+    def shop_score(self):
+        return self.score
