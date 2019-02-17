@@ -3,20 +3,19 @@
 <html lang="en">
 <body>
     {% block content %}
-      
     <form action= "{% url 'bistro:searchname' %}" method="post">
         {% csrf_token %}
         Looking for :
         <br>
-        {% for category in shop.category_set.all %}
-        <input type="radio" name="category" id="category{{ forloop.counter }}" value="{{ category.id }}">
-        <label for="category{{ forloop.counter }}">{{ shop.category }}</label><br>
-        {% endfor %}      
-            
+        {% for shop in latest_shop_list %}
+        <h3><input type="radio" name="category" id="category{{ forloop.counter }}">
+        <label for="category{{ forloop.counter }}">{{ shop.category }}</label></h3>
+        {% endfor %}              
     </form>
-
     {% endblock content %}
-
 
 </body>
 </html>
+
+
+

@@ -1,18 +1,34 @@
 {% extends "bistro/base.html" %}
 <!DOCTYPE html>
 <html lang="en">
+        <!-- <head>
+                <style>
+                div {
+                        width: 50px;
+                        border: 5px solid green;
+                        padding: 10px;
+                        margin: 25px;
+                }
+                </style>
+                </head> -->
 <body>
-    {% block content %}
-      
-    <h1>Home</h1>
-    <h2><li><a href="{% url 'bistro:index' %}">HOME</a></li></h2>
-    <h2><li><a href="{% url 'bistro:search' %}">SEARCH RESTAURANT</a></li></h2>
-    <h2><li><a href="{% url 'bistro:find' %}">CATEGORY</a></li></h2>
-    <h2><li><a href="{% url 'bistro:random' %}">RANDOM RESTAURANT</a></li></h2>
-    <h2><li><a href="{% url 'bistro:review' %}">REVIEW</a></li></h2>
+    {% block content %} 
+    <h1>All reataurant around here : </h1>
+
+    {% if latest_shop_list %}  
+    <ul>
+    {% for shop in latest_shop_list %}
+    <div>{{ shop.shop_name }}</div>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <p>No recommend reataurant</p>
+{% endif %}
     
     {% endblock content %}
 
 
 </body>
 </html>
+
+
