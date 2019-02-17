@@ -1,0 +1,17 @@
+{% extends "bistro/base.html" %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <body>
+     {% block content %} 
+        <h1>{{ category.category_name }}</h1>
+
+            {% for shop in category.shop_set.all %}
+            {{ shop.shop_name }}
+            {% endfor %}
+     
+     {% endblock content %}
+ 
+ 
+ </body>
+ </html>
+ 

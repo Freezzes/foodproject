@@ -2,19 +2,24 @@ from django.http import HttpResponse ,HttpResponseRedirect
 from django.shortcuts import get_object_or_404,render
 from django.http import Http404
 from django.urls import reverse
-from .models import Shop,review
+from .models import Shop,review,Category
 from django.views import generic
 import random
 
 # Create your views here.
 class IndexView(generic.ListView):
     template_name = 'bistro/find.html'
-    context_object_name = 'latest_shop_list'
+    context_object_name = 'latest_category_list'
 
     def get_queryset(self):
-        return Shop.objects.order_by('category')
+        return Category.objects.order_by('category_name')
 
-class DetialView(generic.ListView):
+class DetailView(generic.DetailView):
+    model = Category
+    template_name = 'bistro/showtype.html'
+
+
+class Result(generic.ListView):
     template_name = 'bistro/index.html'
     context_object_name = 'latest_shop_list'
 
@@ -32,9 +37,6 @@ def showsearch(request):
     }
     return render(request, 'bistro/show.html', context)
 
-
-def find(request):
-    return render(request,'bistro/find.html')
 
 def randomshop(request):
     shops = Shop.objects.all()
