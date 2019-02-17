@@ -18,8 +18,7 @@ class DetailView(generic.DetailView):
     model = Category
     template_name = 'bistro/showtype.html'
 
-
-class Result(generic.ListView):
+class Index(generic.ListView):
     template_name = 'bistro/index.html'
     context_object_name = 'latest_shop_list'
 
@@ -30,10 +29,15 @@ def search(request):
     return render(request,'bistro/search.html')
 
 def showsearch(request):
-    bis = Shop.objects.all()
-    search_bis = Shop.objects.get(shop_name=request.POST['restname'])
+    try:
+        search_bis = Shop.objects.get(shop_name=request.POST['restname'])
+    except (KeyError, Shop.DoesNotExist):
+        return render(request, 'bistro/search.html', {
+            'error_message': "Not found.",
+        })
     context = {
-        'bis': search_bis,
+        'bis':search_bis.shop_name,
+        'explain': search_bis.shop_explanation,
     }
     return render(request, 'bistro/show.html', context)
 
