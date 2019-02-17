@@ -9,14 +9,19 @@ def index(request):
     return render(request,'bistro/index.html')
 
 def search(request):
+    return render(request,'bistro/search.html')
+
+def showsearch(request):
+    bis = Shop.objects.all()
+    search_bis = Shop.objects.get(shop_name=request.POST['restname'])
     context = {
-        'bis':Shop.objects.all()
+        'bis': search_bis,
     }
-    return render(request, 'bistro/search.html', context)
+    return render(request, 'bistro/show.html', context)
 
 
 def find(request):
-    return HttpResponse("search from category")
+    return render(request,'bistro/find.html')
 
 def random(request):
     return HttpResponse("random bistro")

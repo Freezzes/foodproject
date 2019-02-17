@@ -1,18 +1,10 @@
 {% extends "bistro/base.html" %}
     {% block content %}
-    
-        <form action= "{% url 'bistro:index' %}" method="post">
+
+        <form action= "{% url 'bistro:searchname' %}" method="post">
             {% csrf_token %}
             Looking for :
             <input type="text" name="restname"  >
             <input type="submit" value="SEARCH">
         </form>
-
-        {% for s in bis %}
-        <article class="media content-section">
-              <div class="article-metadata">
-                <a>{{ s.shop_name }}</a>
-            </div>
-        </article>
-        {% endfor %}
     {% endblock content %}

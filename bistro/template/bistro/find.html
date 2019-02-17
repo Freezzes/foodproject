@@ -1,0 +1,22 @@
+{% extends "bistro/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% block content %}
+      
+    <form action= "{% url 'bistro:searchname' %}" method="post">
+        {% csrf_token %}
+        Looking for :
+        <br>
+        {% for category in shop.category_set.all %}
+        <input type="radio" name="category" id="category{{ forloop.counter }}" value="{{ category.id }}">
+        <label for="category{{ forloop.counter }}">{{ shop.category }}</label><br>
+        {% endfor %}      
+            
+    </form>
+
+    {% endblock content %}
+
+
+</body>
+</html>
