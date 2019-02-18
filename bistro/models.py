@@ -1,4 +1,6 @@
 from django.db import models
+import datetime
+from django.utils import timezone
 
 # Create your models here.
 
@@ -19,10 +21,11 @@ class Shop(models.Model):
     def shop_explanation(self):
         return self.explanation
 
-class review(models.Model):
+class Review(models.Model):
     name = models.ForeignKey(Shop, on_delete=models.CASCADE)
-    comment = models.CharField(max_length=200)
+    review_date = models.DateTimeField('date published')
     score = models.IntegerField(default=0)
+    comment = models.CharField(max_length=200)
 
     def __str__(self):
         return self.comment

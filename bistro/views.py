@@ -2,7 +2,7 @@ from django.http import HttpResponse ,HttpResponseRedirect
 from django.shortcuts import get_object_or_404,render
 from django.http import Http404
 from django.urls import reverse
-from .models import Shop,review,Category
+from .models import Shop,Review,Category
 from django.views import generic
 import random
 
