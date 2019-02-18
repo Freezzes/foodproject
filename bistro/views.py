@@ -30,14 +30,14 @@ def search(request):
 
 def showsearch(request):
     try:
-        search_bis = Shop.objects.get(shop_name=request.POST['restname'])
+        search_bis = Shop.objects.get(shop_name=request.GET['restname'])
     except (KeyError, Shop.DoesNotExist):
         return render(request, 'bistro/search.html', {
             'error_message': "Not found.",
-        })
+        })    
     context = {
         'bis':search_bis.shop_name,
-        'explain': search_bis.shop_explanation,
+        'explain': search_bis.explanation,
     }
     return render(request, 'bistro/show.html', context)
 

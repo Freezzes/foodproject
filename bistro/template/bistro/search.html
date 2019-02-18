@@ -1,7 +1,7 @@
 {% extends "bistro/base.html" %}
     {% block content %}
 
-        <form action= "{% url 'bistro:searchname' %}" method="post">
+        <form action= "{% url 'bistro:searchname' %}" method="get">
             {% csrf_token %}
             Looking for :
             <input type="text" name="restname"  >
