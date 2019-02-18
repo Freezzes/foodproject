@@ -4,11 +4,15 @@
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
-            
+            Restaurant name:
+            <input type="text" name="name">
                 <legend >Review Here :</legend>
                 <textarea name="message" cols="40" rows="10" placeholder="Enter message here." required id="id_message">
-                </textarea>
-
+                </textarea><br>
+                ความพึงพอใจ (0 - 5):
+                <input type="number" name="likescore"><br>
+                Name :
+                <input type="text" name="user">               
             
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Post</button>
