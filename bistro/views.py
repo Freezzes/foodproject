@@ -7,28 +7,28 @@ from django.views import generic
 import random
 
 # Create your views here.
-class IndexView(generic.ListView):
+class Category_View(generic.ListView):
     template_name = 'bistro/find.html'
     context_object_name = 'latest_category_list'
 
     def get_queryset(self):
         return Category.objects.order_by('category_name')
 
-class DetailView(generic.DetailView):
+class Detail_Category(generic.DetailView):
     model = Category
     template_name = 'bistro/showtype.html'
 
-class Index(generic.ListView):
+class Homepage(generic.ListView):
     template_name = 'bistro/index.html'
     context_object_name = 'latest_shop_list'
 
     def get_queryset(self):
         return Shop.objects.order_by('shop_name')
 
-def search(request):
+def search_name(request):
     return render(request,'bistro/search.html')
 
-def showsearch(request):
+def showexplanation(request):
     try:
         search_bis = Shop.objects.get(shop_name=request.GET['restname'])
     except (KeyError, Shop.DoesNotExist):

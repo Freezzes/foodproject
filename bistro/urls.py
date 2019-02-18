@@ -3,13 +3,13 @@ from . import views
 
 app_name = 'bistro'
 urlpatterns = [
-    path('', views.Index.as_view(), name='index'),
+    path('', views.Homepage.as_view(), name='index'),
 
-    path('search/',views.search,name='search'),
-    path('searchname/',views.showsearch,name='searchname'),
+    path('search/',views.search_name,name='search'),
+    path('searchname/',views.showexplanation,name='searchname'),
 
-    path('find/', views.IndexView.as_view(), name='find'),
-    path('findshop/<int:pk>/',views.DetailView.as_view(),name='findshop'),
+    path('find/', views.Category_View.as_view(), name='find'),
+    path('findshop/<int:pk>/',views.Detail_Category.as_view(),name='findshop'),
 
     path('random/',views.randomshop,name='random'),
     path('review/',views.review_bistro,name='review'),
