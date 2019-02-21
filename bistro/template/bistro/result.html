@@ -1,0 +1,15 @@
+{% extends "bistro/base.html" %}
+
+{% block content %}
+    
+    
+    <h1>RESULT "{{key}}" : {{count}} การค้นหา</h1> <br>
+    {% for item in lstname %}
+            <h2>
+                {{item}}
+                
+               
+            </h2>
+    {% endfor %}
+
+{% endblock content %}

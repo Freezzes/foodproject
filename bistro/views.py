@@ -5,6 +5,8 @@ from django.urls import reverse
 from .models import Shop,Review,Category
 from django.views import generic
 import random
+import datetime
+from django.utils import timezone
 
 # Create your views here.
 class Category_View(generic.ListView):
@@ -28,6 +30,15 @@ class Homepage(generic.ListView):
 def search_name(request):
     return render(request,'bistro/search.html')
 
+def result(request):
+    keyword = request.GET['shopname']
+    bis = Shop.objects.filter(shop_name__startswith =keyword)
+    count = len(bis)
+    context = { 'lstname':bis,
+                'count':count,
+                'key':keyword,}
+    return  render(request,'bistro/result.html',context)
+    
 def showexplanation(request):
     try:
         search_bis = Shop.objects.get(shop_name=request.GET['restname'])
@@ -41,7 +52,6 @@ def showexplanation(request):
     }
     return render(request, 'bistro/show.html', context)
 
-
 def randomshop(request):
     shops = Shop.objects.all()
     random_shop = Shop.objects.all(random=Shop.shop_name)
@@ -50,4 +60,21 @@ def randomshop(request):
 
 def review_bistro(request):
     return render(request,'bistro/review.html')
+
+def add_review(request):
+    
+    name = Shop.objects.get(shop_name=request.POST['shopname'])
+    score = int(request.POST['likescore'])
+    comment = request.POST['message']
+    review_date=timezone.now()
+    re = Review(name = name,review_date=timezone.now(),score=score,comment=comment )
+    re.save()
+    userreview = request.POST['user']
+    context = { 'name' : userreview,
+                'bis':name,
+                'score':score,
+                'comment':comment,
+                'date':review_date}
+
+    return render(request,'bistro/random.html',context)
 

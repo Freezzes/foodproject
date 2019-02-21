@@ -2,10 +2,10 @@
 
 {% block content %}
     
-        <form method="POST">
+        <form action="{% url 'bistro:reviewhere' %}"method="POST">
             {% csrf_token %}
             Restaurant name:
-            <input type="text" name="name">
+            <input type="text" name="shopname">
                 <legend >Review Here :</legend>
                 <textarea name="message" cols="40" rows="10" placeholder="Enter message here." >
                 </textarea><br>

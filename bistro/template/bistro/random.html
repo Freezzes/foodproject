@@ -1,1 +1,17 @@
-{{rs}}
+{% extends "bistro/base.html" %}
+
+{% block content %}
+
+        <article class="media content-section">
+                <div class="media-body">
+                  <div class="article-metadata">
+                    <h2>{{ bis }}</a></h2>
+                    
+                  </div>
+                    <p >{{ comment }}<br>
+                    <a >{{ score }} คะแนน</a></p>
+                    <a >{{ name }}</a>                    
+                    <small>{{date}}</small>
+                </div>
+              </article>
+{% endblock content %}
